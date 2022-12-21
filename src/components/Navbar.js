@@ -1,26 +1,58 @@
 import { useState } from "react";
+import Sidebar from "./Sidebar";
+import { faHome, faList, faCog } from "@fortawesome/free-solid-svg-icons";
+
 export default function Navbar() {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState();
+  const links = [
+    {
+      name: "Home",
+      path: "/",
+      icon: faHome,
+    },
+    {
+      name: "Recipes",
+      path: "/recipes",
+      icon: faList,
+    },
+    {
+      name: "Settings",
+      path: "/settings",
+      icon: faCog,
+    },
+  ];
+
+  function closeSidebar() {
+    setShowSidebar(false);
+  }
   return (
-    <div className="navbar container">
-      <a href="#!" className="logo">
-        F<span style={{ color: "black" }}>oo</span>diesDev
-      </a>
-      <div className="nav-links">
-        <a href="#!" className="">
-          Home
+    <>
+      <div className="navbar container">
+        <a href="#!" className="logo">
+          F<span style={{ color: "black" }}>oo</span>diesDev
         </a>
-        <a href="#!">Recipes</a>
-        <a href="#!">Setting</a>
+        <div className="nav-links">
+          {links.map((link) => (
+            <a href="#!" key={link.name}>
+              {link.name}
+            </a>
+          ))}
+          {/* <a href="#!" className="">
+            Home
+          </a>
+          <a href="#!">Recipes</a>
+          <a href="#!">Setting</a> */}
+        </div>
+        <div
+          onClick={() => setShowSidebar(true)}
+          className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}
+        >
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
       </div>
-      <div
-        onClick={() => setShowSidebar(!showSidebar)}
-        className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}
-      >
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
-      </div>
-    </div>
+      {showSidebar && <Sidebar close={closeSidebar} links={links} />}
+    </>
   );
 }
