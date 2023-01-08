@@ -11,7 +11,7 @@ export default function Footer() {
         <p>&copy; 2023 | All Rights Reserved</p>
       </div>
       <div className="footer-section">
-        <p className="title">contact Us</p>
+        <p className="title">Contact Us</p>
         <p>foodies@dev.com</p>
         <p>+021 - 7888894</p>
         <p>Jakarta Indonesia</p>
